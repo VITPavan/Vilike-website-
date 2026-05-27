@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --accent: #0057ff;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+@layer utilities {
+  .gradient-blue-line {
+    background: linear-gradient(90deg, transparent, #0057ff, transparent);
+    height: 2px;
+  }
+  .card-glow:hover {
+    box-shadow: 0 0 30px rgba(0, 87, 255, 0.35);
+    border-color: #0057ff;
+  }
+}
