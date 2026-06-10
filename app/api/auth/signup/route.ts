@@ -6,7 +6,6 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, email, phone, company } = body;
 
-    // Validate required fields
     if (!name || !email) {
       return NextResponse.json(
         { error: "Name and email are required" },
@@ -14,7 +13,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
@@ -23,7 +21,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Create signup request (stored as pending customer)
     const signupRequest = createSignupRequest({
       name,
       email,
