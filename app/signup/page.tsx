@@ -45,7 +45,6 @@ export default function SignupPage() {
     setSuccess(true);
     setFormData({ name: "", email: "", phone: "", company: "" });
     
-    // Show success message for 3 seconds, then redirect to login
     setTimeout(() => {
       router.push("/login");
     }, 3000);
