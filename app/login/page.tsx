@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { LOGO_SRC } from "@/lib/machine-frames";
 
 export default function LoginPage() {
@@ -43,40 +44,77 @@ export default function LoginPage() {
             className="mx-auto drop-shadow-[0_0_20px_rgba(0,87,255,0.6)] mix-blend-screen"
           />
         </div>
-        <h1 className="mt-4 text-center text-2xl font-bold">Login</h1>
-        <p className="text-center text-sm text-vilike-muted">Customer portal or Admin</p>
+        <h1 className="mt-4 text-center text-2xl font-bold">Customer Login</h1>
+        <p className="text-center text-sm text-vilike-muted">
+          Sign in to your VILIKE portal
+        </p>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            className="w-full rounded-lg border border-white/20 bg-vilike-bg px-4 py-3 text-white"
-            required
-          />
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            className="w-full rounded-lg border border-white/20 bg-vilike-bg px-4 py-3 text-white"
-            required
-          />
-          {error && <p className="text-sm text-red-400">{error}</p>}
+          <div>
+            <label className="block text-xs font-medium text-vilike-muted mb-1">
+              Email Address
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your@company.com"
+              className="w-full rounded-lg border border-white/20 bg-vilike-bg px-4 py-3 text-white placeholder:text-white/40 focus:border-vilike-accent focus:outline-none"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-vilike-muted mb-1">
+              Passkey
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Your login passkey"
+              className="w-full rounded-lg border border-white/20 bg-vilike-bg px-4 py-3 text-white placeholder:text-white/40 focus:border-vilike-accent focus:outline-none"
+              required
+            />
+          </div>
+
+          {error && (
+            <div className="rounded-lg border border-red-500/40 bg-red-500/10 p-3">
+              <p className="text-sm text-red-400">{error}</p>
+            </div>
+          )}
+
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-lg bg-vilike-accent py-3 font-semibold text-white disabled:opacity-50"
+            className="w-full rounded-lg bg-vilike-accent py-3 font-semibold text-white disabled:opacity-50 hover:opacity-90 transition"
           >
             {loading ? "Signing in…" : "Sign In"}
           </button>
         </form>
 
-        <div className="mt-6 rounded-lg bg-white/5 p-3 text-xs text-vilike-muted">
-          <p className="font-medium text-white">Demo accounts</p>
-          <p>Customer: customer@demo.com / demo123</p>
-          <p>Admin (Dad): admin@vilikefab.com / demo123</p>
+        {/* New customer sign-up section */}
+        <div className="mt-6 rounded-lg border border-vilike-accent/20 bg-vilike-accent/5 p-4 text-center">
+          <p className="text-sm font-semibold text-white">New to VILIKE?</p>
+          <p className="mt-1 text-xs text-vilike-muted">
+            Request portal access and we'll send you a passkey once approved
+          </p>
+          <Link
+            href="/signup"
+            className="mt-3 inline-block rounded-lg border border-vilike-accent bg-vilike-accent/10 px-5 py-2 text-sm font-semibold text-vilike-accent hover:bg-vilike-accent hover:text-white transition"
+          >
+            Request Access →
+          </Link>
+        </div>
+
+        <div className="mt-4 rounded-lg bg-white/5 p-3 text-xs text-vilike-muted">
+          <p className="font-medium text-white mb-2">Demo Credentials</p>
+          <p>
+            <span className="text-white">Customer:</span> customer@demo.com / demo123
+          </p>
+          <p>
+            <span className="text-white">Admin:</span> admin@vilikefab.com / demo123
+          </p>
         </div>
       </div>
     </div>
